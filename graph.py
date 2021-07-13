@@ -3,6 +3,7 @@
 
 
 import numpy as nump
+import matplotlib
 import matplotlib.pyplot as mplot
 
 matplotlib.use('Agg')
