@@ -14,7 +14,7 @@ def graph(n, momentum):
     mplot.plot(x, y, label = "Accuracy of the Training Set")
     mplot.plot(x2, y2, label = "Accuracy of the Testing Set")
 
-    mplot.title('Hidden Unit(s): ', n, 'Momentum: ', momentum)
+    mplot.title('Hidden Unit(s): ' + str(n) + 'Momentum: ' + str(momentum))
     mplot.xlabel('# [Iteration(s)] of Epoch(s)')
     mplot.ylabel('Accuracy (%)')
    
