@@ -13,11 +13,11 @@ matplotlib.use('Agg')
 
 # Setup: MNIST Data Input
 
-trainfile = open("mnist_train.csv", "r")
+trainfile = open("mnist_train.csv","r")
 trainset = csv.reader(trainfile)
 traindata = numpy.array(list(trainset))
 
-testfile = open("mnist_test.csv", "r")
+testfile = open("mnist_test.csv","r")
 testset = csv.reader(testfile)
 testdata = numpy.array(list(testset))
 
