@@ -59,7 +59,7 @@ weightinput = numpy.random.uniform(nw, pw,(inputs, n))
 pweightinput = numpy.zeros((inputs, n))
 
 weightoutput = numpy.random.uniform(nw, pw, (n + 1, 10))
-pweighthoutput = numpy.zeros((n + 1, 10))
+pweightoutput = numpy.zeros((n + 1, 10))
 
 
 # Pre-Start: Arrays for runtime data array(s) for both training and test runs (epochs/experiments)
