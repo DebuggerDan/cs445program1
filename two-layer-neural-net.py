@@ -107,7 +107,7 @@ def twolayerperceptron(epoch, label, dataset, task, config):
         # Pre-Start (Loop): Initializing target values, loading datasets, then reshaping dataset.
 
         tvalue = label[idx, 0].astype('int')
-        actualaappend(tvalue)
+        actuala.append(tvalue)
         x = dataset[idx]
         x[0] = bi
         x = x.reshape(1, inputs)
