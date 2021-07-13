@@ -3,9 +3,8 @@
 
 
 import numpy as nump
-import matplotlib
 import matplotlib.pyplot as mplot
-
+import matplotlib
 matplotlib.use('Agg')
 
 def graph(n, momentum):

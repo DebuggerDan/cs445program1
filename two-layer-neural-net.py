@@ -6,6 +6,8 @@ import numpy as nump
 import csv
 from sklearn.metrics import confusion_matrix
 import graph
+import matplotlib
+matplotlib.use('Agg')
 # import tensorflow
 
 
@@ -28,9 +30,9 @@ momentum = 0.9
 # The momentum!
 learnrate = 0.1
 # The learning rate!
-epochs = 20
+epochs = 50
 # The numpber of epoch(s)! [E.g. 'cycles']
-n = 100
+n = 20
 # n, hidden units
 bi = 1
 # The bias!
@@ -72,18 +74,18 @@ testlabeldata = nump.asfarray(testdata[:, 1:])
 
 # Pre-Start: Task Settings (By k-th unit)
 
-k = 0.9
-other = 0.1
+# k = 0.9
+# other = 0.1
 
 target = nump.arange(10)
 
 traintk = (target == trainlabeldata).astype(nump.float)
-traintk[traintk == 0] = other
-traintk[traintk == 1] = k
+traintk[traintk == 0] = 0.1
+traintk[traintk == 1] = 0.9
 
 testtk = (target == testlabeldata).astype(nump.float)
-testtk[testtk == 0] = other
-testtk[testtk == 1] = k
+testtk[testtk == 0] = 0.1
+testtk[testtk == 1] = 0.9
 
 
 # Core: Two-Layer Perceptron
