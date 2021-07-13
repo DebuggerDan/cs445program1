@@ -34,6 +34,8 @@ n = 100
 # n, hidden units
 bi = 1
 # The bias!
+confusion = num.zeros(10, 10), dtypes = int)
+# The confusion matrix constant!
 
 
 # Setup: Sigmoid Function [Classification: Activation Function]
@@ -83,3 +85,10 @@ testtk[testtk == 1] = k
 
 # Core: Two-Layer Perceptron
 
+def twolayerperceptron(epoch, label, dataset, task, config):
+    global confusion, epochs, pweightinput, weightinput, pweightoutput, weightoutput
+
+    actuala = []
+    # Array for actual value(s) storage
+    predicta = []
+    # Array for predictied value(s) storage
