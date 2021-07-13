@@ -102,7 +102,7 @@ def twolayerperceptron(epoch, label, dataset, task, config):
     predicta = []
     # Array for predictied value(s) storage
 
-    for idx in range(datset.shape[0]): # Loop for Training & Testing Datasets
+    for idx in range(dataset.shape[0]): # Loop for Training & Testing Datasets
         
         # Pre-Start (Loop): Initializing target values, loading datasets, then reshaping dataset.
 
@@ -172,7 +172,7 @@ for idx2 in range(epochs):
     trainingsetaccuracy = twolayerperceptron(idx2, trainrundata, trainlabeldata, traintk, 0)
     testingsetaccuracy = twolayerperceptron(idx2, testrundata, trainlabeldata, testtk, 1)
     
-    setaccuracy(idx2, trainingsetaccuracy, 'traingaccuracy.csv')
+    setaccuracy(idx2, trainingsetaccuracy, 'trainingaccuracy.csv')
     setaccuracy(idx2, testingsetaccuracy, 'testingaccuracy.csv')
 
 graph.graph(n, momentum)
