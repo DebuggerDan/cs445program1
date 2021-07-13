@@ -72,6 +72,11 @@ trainlabeldata = numpy.asfarray(traindata[:, :1])
 testrundata = numpy.asfarray(testdata[:, 1:]) / prep
 testlabeldata = numpy.asfarray(testdata[:, :1])
 
+# For Experiment 2:
+# training_exp2 = numpy.asfarray(traindata[:15000]) # A Quarter of Training Data
+# training_exp2pt2 = numpy.asfarray(traindata[:30000]) # Half of Training Data
+
+
 
 # Pre-Start: Task Settings (By k-th unit)
 
@@ -142,7 +147,7 @@ def twolayerperceptron(epoch, dataset, label, task, config):
 
         
     # Start: Accuracy Measurement
-    accuracyv = (numpy.array(predicta) == numpy.array(actuala)).sum() / float(len(actuals))
+    accuracyv = (numpy.array(predicta) == numpy.array(actuala)).sum() / float(len(actuala))
     acc = accuracyv * 100
 
     if config == 1 and epoch == (epochs - 1): # If we are currently testing & If testing is complete
