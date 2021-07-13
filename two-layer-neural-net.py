@@ -115,7 +115,7 @@ def twolayerperceptron(epoch, dataset, label, task, config):
         actuala.append(tvalue)
         x = dataset[idx]
         x[0] = bi
-        x = x.reshape(1, inputs)
+        x = x.reshape(1, 784)
 
         # Start (Loop): Activation of the Output and Hidden Layers
 
