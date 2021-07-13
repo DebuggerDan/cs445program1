@@ -2,14 +2,14 @@
 # Graph Implementation
 
 
-import numpy as nump
+import numpy
 import matplotlib.pyplot as mplot
 import matplotlib
 matplotlib.use('Agg')
 
 def graph(n, momentum):
-    x, y = nump.loadtxt("trainingaccuracy.csv", delimiter = ',', unpack=True)
-    x2, y2 = nump.loadtxt("testingaccuracy.csv", delimiter = ',', unpack=True)
+    x, y = numpy.loadtxt("trainingaccuracy.csv", delimiter = ',', unpack=True)
+    x2, y2 = numpy.loadtxt("testingaccuracy.csv", delimiter = ',', unpack=True)
 
     mplot.plot(x, y, label = "Accuracy of the Training Set")
     mplot.plot(x2, y2, label = "Accuracy of the Testing Set")
