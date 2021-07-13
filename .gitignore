@@ -350,3 +350,4 @@ MigrationBackup/
 .ionide/
 /mnist_test.csv
 /mnist_train.csv
+/debug.py

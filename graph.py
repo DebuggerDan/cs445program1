@@ -21,4 +21,4 @@ def graph(n, momentum):
     mplot.legend()
     mplot.show()
 
-    mplotsavefig('plotofaccuracyandepoch.png')
+    mplot.savefig('plotofaccuracyandepoch.png')

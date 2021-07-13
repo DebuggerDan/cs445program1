@@ -4,20 +4,21 @@
 
 import numpy
 import csv
-from sklearn.metrics import confusion_matrix
 import graph
 import matplotlib
+from sklearn.metrics import confusion_matrix
+
 matplotlib.use('Agg')
 # import tensorflow
 
 
 # Setup: MNIST Data Input
 
-trainfile = open("mnist_train.csv","r")
+trainfile = open("mnist_train.csv", "r")
 trainset = csv.reader(trainfile)
 traindata = numpy.array(list(trainset))
 
-testfile = open("mnist_test.csv","r")
+testfile = open("mnist_test.csv", "r")
 testset = csv.reader(testfile)
 testdata = numpy.array(list(testset))
 
@@ -63,13 +64,13 @@ pweeighoutput = numpy.zeros((n + 1, 10))
 
 # Pre-Start: Arrays for runtime data array(s) for both training and test runs (epochs/experiments)
 
-# prep = 255
+prep = 255
 
-trainrundata = numpy.asfarray(traindata[:, 1:]) / 255
-trainlabeldata = numpy.asfarray(traindata[:, 1:])
+trainrundata = numpy.asfarray(traindata[:, 1:]) / prep
+trainlabeldata = numpy.asfarray(traindata[:, :1])
 
-testrundata = numpy.asfarray(testdata[:, 1:]) / 255
-testlabeldata = numpy.asfarray(testdata[:, 1:])
+testrundata = numpy.asfarray(testdata[:, 1:]) / prep
+testlabeldata = numpy.asfarray(testdata[:, :1])
 
 
 # Pre-Start: Task Settings (By k-th unit)
@@ -79,11 +80,12 @@ testlabeldata = numpy.asfarray(testdata[:, 1:])
 
 target = numpy.arange(10)
 
-traintk = (target == trainlabeldata).astype(numpy.float)
-testtk = (target == testlabeldata).astype(numpy.float)
+traintk = (target == trainlabeldata).astype(float)
+
 traintk[traintk == 0] = 0.1
 traintk[traintk == 1] = 0.9
 
+testtk = (target == testlabeldata).astype(float)
 
 testtk[testtk == 0] = 0.1
 testtk[testtk == 1] = 0.9
@@ -162,10 +164,15 @@ def setaccuracy(accvalue, acc, dataset):
 
 # Post-Training/Testing: Print Experimental Values
 print('Current # of hidden units: ', n, ', Momentum is at: ', momentum)
-print('Training & Test Sets (Respectively): ', trainrundata, testrundata)
+print('Training & Test Sets (Respectively): ')
+print(trainrundata)
+print(testrundata)
 
 for idx2 in range(epochs):
     trainingsetaccuracy = twolayerperceptron(idx2, trainrundata, trainlabeldata, traintk, 0)
     testingsetaccuracy = twolayerperceptron(idx2, testrundata, trainlabeldata, testtk, 1)
+    
+    setaccuracy(idx2, trainingsetaccuracy, 'traingaccuracy.csv')
+    setaccuracy(idx2, testingsetaccuracy, 'testingaccuracy.csv')
 
 graph.graph(n, momentum)
