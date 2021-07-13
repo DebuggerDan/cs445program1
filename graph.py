@@ -5,6 +5,8 @@
 import numpy as nump
 import matplotlib.pyplot as mplot
 
+matplotlib.use('Agg')
+
 def graph(n, momentum):
     x, y = nump.loadtxt("trainingaccuracy.csv", delimiter = ',', unpack=True)
     x2, y2 = nump.loadtxt("testingaccuracy.csv", delimiter = ',', unpack=True)
