@@ -5,7 +5,8 @@
 import numpy as num
 import csv
 from sklearn.metrics import confusion_matrix
-import matplotlib.pyplot as plot
+import graph
+
 # import tensorflow
 
 
@@ -42,6 +43,9 @@ confusion = num.zeros(10, 10), dtypes = int)
 
 def activationsigmoid(n):
     return 1 / (1 + num.exp(-n))
+
+activations = num.zeros((1, n + 1))
+activations[0,0] = 1
 
 
 # Setup: Weights
@@ -86,9 +90,80 @@ testtk[testtk == 1] = k
 # Core: Two-Layer Perceptron
 
 def twolayerperceptron(epoch, label, dataset, task, config):
-    global confusion, epochs, pweightinput, weightinput, pweightoutput, weightoutput
+    global confusion, inputs, epochs, pweightinput, weightinput, pweightoutput, weightoutput
+    # Perceptron Globals
 
     actuala = []
     # Array for actual value(s) storage
     predicta = []
     # Array for predictied value(s) storage
+
+    for idx in range(datset.shape[0]): # Loop for Training & Testing Datasets
+        
+        # Pre-Start (Loop): Initializing target values, loading datasets, then reshaping dataset.
+
+        tvalue = label[idx, 0].astype('int')
+        actualaappend(tvalue)
+        x = dataset[idx]
+        x[0] = bi
+        x = x.reshape(1, inputs)
+
+        # Start (Loop): Activation of the Output and Hidden Layers
+
+        zhidden = num.dot(x, weightinput)
+        sigmoidhidden = activationsigmoid(zhidden)
+        
+        activations[0, 1:] = sigmoidhidden
+
+        zoutput = num.dot(activations, weightoutput)
+        sigmoidoutput = activationsigmoid(zoutput)
+
+        # Start (Loop): Finding the maximum argument and then appending it to predict-array
+
+        prediction = num.argmax(sigmoidoutput)
+        predicta.append(prediction)
+
+        # Intensive (Training Perceptrons)
+        if config == 1 and epoch > 0: # If we are currently on k+1'th epoch [cycle] and config has been enabled
+            outputerror = sigmoidoutput * (1 - sigmoidoutput) * (task[idx] - sigmoidoutput)
+            hiddenerror = sigmoidhidden * (1 - sigmoidhidden) * num.dot(outputerror, weightoutput[1:,:].T)
+
+            deltainput = (learnrate * hiddenerror * x.T) + (momentum * pweightinput)
+            pweighinput = deltainput
+            weightinput = weightinput + deltainput
+
+            deltaoutput = (learnrate * outputerror * activations.T) + (momentum * pweightoutput)
+            pweightoutput = deltaoutput
+            weightoutput = weightoutput + deltaoutput
+
+        
+    # Start: Accuracy Measurement
+    accuracyv = (num.array(predicta) == num.array(actuala)).sum() / float(len(actuals))
+    acc = accuracyv * 100
+
+    if config == 1 and epoch == (epochs - 1):
+        genconfusion = confusion_matrix(actuala, predicta)
+        confusion = num.add(genconfusion, confusion)
+        print("Epoch #", epochs, " - Confusion Matrix")
+        print(confusion)
+
+    if config == 1 and epoch != (epochs - 1):
+        genconfusion = confusion_matrix(actuala, predicta)
+        confusion = num.add(genconfusion, confusion)
+
+    return acc
+
+def setaccuracy(accvalue, acc, dataset):
+    with open(dataset, 'a') as currset:
+        appender = csv.writer(currset)
+        appender.writerow([accvalue, acc])
+
+# Post-Training/Testing: Print Experimental Values
+print('Current # of hidden units: ', n, ', Momentum is at: ', momentum)
+print('Training & Test Sets (Respectively): ', trainrundata, testrundata)
+
+for idx2 in range(epochs):
+    trainingsetaccuracy = twolayerperceptron(idx2, trainrundata, trainlabeldata, traintk, 0)
+    testingsetaccuracy = twolayerperceptron(idx2, testrundata, trainlabeldata, testtk, 1)
+
+graph.graph(n, momentum)
