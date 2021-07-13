@@ -93,7 +93,7 @@ testtk[testtk == 1] = 0.9
 
 # Core: Two-Layer Perceptron
 
-def twolayerperceptron(epoch, label, dataset, task, config):
+def twolayerperceptron(epoch, dataset, label, task, config):
     global confusion, inputs, epochs, pweightinput, weightinput, pweightoutput, weightoutput
     # Perceptron Globals
 
