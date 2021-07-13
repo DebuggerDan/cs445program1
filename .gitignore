@@ -352,3 +352,4 @@ MigrationBackup/
 /mnist_train.csv
 /debug*.py
 .csv
+/plotofaccuracyandepoch.png
