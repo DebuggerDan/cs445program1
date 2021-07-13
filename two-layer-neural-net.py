@@ -133,7 +133,7 @@ def twolayerperceptron(epoch, dataset, label, task, config):
         predicta.append(prediction)
 
         # Intensive (Training Perceptrons)
-        if config == 1 and epoch > 0: # If we are currently on k+1'th epoch [cycle] and config has been enabled
+        if config == 0 and epoch > 0: # If we are currently on k+1'th epoch [cycle] and config has been enabled
             outputerror = sigmoidoutput * (1 - sigmoidoutput) * (task[idx] - sigmoidoutput)
             hiddenerror = sigmoidhidden * (1 - sigmoidhidden) * numpy.dot(outputerror, weightoutput[1:,:].T)
 
