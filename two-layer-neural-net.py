@@ -33,7 +33,7 @@ learnrate = 0.1
 # The learning rate!
 epochs = 50
 # The number of epoch(s)! [E.g. 'cycles']
-n = 20
+n = 100
 # n, hidden units
 bi = 1
 # The bias!
